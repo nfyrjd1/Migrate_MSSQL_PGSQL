@@ -27,7 +27,9 @@ namespace MigrateDB.Classes
         {
             TableStructure tableStructure = new(this.PGSQL_DbManager);
             this.tables = await tableStructure.GetAllTablesStructure();
-            this.completedTables = FileManager.Read(FileManager.FileType.Tables).Split("\n").ToList();
+            this.completedTables = FileManager.Read(FileManager.FileType.Tables)
+                .Split("\n", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries)
+                .ToList();
 
             await ExecuteScriptBefore();
 

@@ -27,6 +27,8 @@ public class Program
 
     public static void WriteLine(string line)
     {
-        Console.WriteLine($"{DateTime.Now.ToString()}: {line}");
+        line = $"{DateTime.Now.ToString()}: {line}";
+        Console.WriteLine(line);
+        FileManager.WriteLineAsync(FileManager.FileType.Logs, line).Wait();
     }
 }

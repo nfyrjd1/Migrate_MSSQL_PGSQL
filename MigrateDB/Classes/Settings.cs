@@ -24,7 +24,7 @@ namespace MigrateDB.Classes
             Settings settings = new();
             foreach (string line in lines)
             {
-                List<string> parts = line.Split('=', 2, StringSplitOptions.TrimEntries).ToList(); // Разбиваем по первому равно
+                List<string> parts = line.Split('=', 2, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList(); // Разбиваем по первому равно
                 if (parts.Count < 2)
                 {
                     throw new Exception($"Не удалось прочитать настройки: {line}");
@@ -48,7 +48,7 @@ namespace MigrateDB.Classes
                         }
                         break;
                     case "ignoretables":
-                        settings.IgnoreTables = value.Split(',', StringSplitOptions.TrimEntries).ToList();
+                        settings.IgnoreTables = value.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries).ToList();
                         break;
                 }
             }

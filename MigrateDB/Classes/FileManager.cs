@@ -5,11 +5,13 @@
         const string AFTER_SCRIPT_FILE_PATH = "./after_script.txt";
         const string TABLES_FILE_PATH = "./tables.txt";
         const string SETTINGS_FILE_PATH = "./settings.txt";
+        const string LOGS_FILE_PATH = "./logs.txt";
 
         public enum FileType {
             AfterScript,
             Tables,
             Settings,
+            Logs,
         };
 
         static Task? CurrentWrite = null;
@@ -28,6 +30,10 @@
                 case FileType.Settings:
                     {
                         return SETTINGS_FILE_PATH;
+                    }
+                case FileType.Logs:
+                    {
+                        return LOGS_FILE_PATH;
                     }
             }
 
